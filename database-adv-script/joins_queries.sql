@@ -16,7 +16,7 @@ INNER JOIN
 SELECT 
     p.property_id,
     p.property_name,
-    r.review_id,
+    IFNULL(r.review_id, 'NO REVIEW') AS review_id,
     r.rating,
     r.comment
 FROM 
