@@ -28,16 +28,15 @@ LEFT JOIN
 -- 3. FULL OUTER JOIN (emulated in MySQL): Retrieve all users and all bookings, even if unmatched
 -- Part 1: Users LEFT JOIN Bookings
 SELECT 
-    u.user_id,
-    u.name AS user_name,
-    u.email,
-    b.booking_id,
-    b.booking_date,
-    b.property_id
+    p.property_id,
+    p.property_name,
+    IFNULL(r.review_id, 'NO REVIEW') AS review_id,
+    IFNULL(r.rating, 'N/A') AS rating,
+    IFNULL(r.comment, 'No comment') AS comment
 FROM 
-    users u
+    properties p
 LEFT JOIN 
-    bookings b ON u.user_id = b.user_id
+    reviews r ON p.property_id = r.property_id;
 
 UNION
 
