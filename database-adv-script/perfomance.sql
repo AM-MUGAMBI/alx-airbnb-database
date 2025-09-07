@@ -23,6 +23,7 @@ FROM Bookings b
 JOIN Users u ON b.user_id = u.user_id
 JOIN Properties p ON b.property_id = p.property_id
 LEFT JOIN Payments pay ON b.booking_id = pay.booking_id
+WHERE b.check_in_date >= '2023-01-01' AND b.check_out_date <= '2024-12-31'
 ORDER BY b.check_in_date DESC;
 
 -- REFACTORED OPTIMIZED QUERY
